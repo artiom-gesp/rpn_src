@@ -22,7 +22,8 @@
                         i++;
 
                     // If char is a number -> find next element to push on the stack.
-                    if (!isNaN(expression[i]) || (expression[i] === '-' && !isNaN(expression[i + 1]))) {
+                    if (!isNaN(expression[i]) || (expression[i] === '-' && !isNaN(expression[i + 1])
+                    && expression[i + 1] !== ' ')) {
                         let parsed = parseFloat(expression.substring(i, expression.length));
                         if (typeof parsed !== 'undefined') {
                             let toPush = parsed;
@@ -41,7 +42,7 @@
                         // If poped elements are not defined, the expression is not valid.
                         // If it is valid, evaluate it.
                         if (!isNaN(v1) && !isNaN(v2)) {
-                            stack.push(eval(v2 + (expression[i] === 'x' ? '*' : expression[i]) + v1))
+                            stack.push(eval(v2 + ' ' + (expression[i] === 'x' ? '*' : expression[i]) + ' ' + v1))
                             --size;
                         }
                         else {
